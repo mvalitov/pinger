@@ -14,7 +14,10 @@ config :pinger, ecto_repos: [Pinger.Repo]
 
 config :pinger,
   redis_host: "0.0.0.0",
-  redis_port: 6379
+  redis_port: 6379,
+  max_importers: 1,
+  max_pingers: 1,
+  max_savers: 1
 
 
 database_file =
