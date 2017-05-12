@@ -22,7 +22,8 @@ defmodule Pinger.Request do
 
 # timeout in milliseconds
   defp default_params(timeout \\ 5000) do
-    [ssl: [verify: :verify_none], timeout: timeout, recv_timeout: timeout, connect_timeout: timeout]
+    [ssl: [verify: :verify_none], timeout: timeout, recv_timeout: timeout, connect_timeout: timeout, hackney: [pool: false]]
   end
 
 end
+curl -x socks5://88.212.246.220:20658 https://ip.nf/me.json
