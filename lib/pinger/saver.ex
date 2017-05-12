@@ -27,9 +27,9 @@ defmodule Pinger.Saver do
 
   defp save_proxy(proxy, conn) do
     json = Poison.encode!(proxy)
-    group_queue = RedisUniqueQueue.create("proxy|groups|group_#{proxy.group_id}", conn)
+    {:ok, group_queue} = RedisUniqueQueue.create("proxy|groups|group_#{proxy.group_id}", conn)
     RedisUniqueQueue.push(group_queue, json)
-    country_queue = RedisUniqueQueue.create("proxy|countries|#{proxy.country_code}", conn)
+    {:ok, country_queue} = RedisUniqueQueue.create("proxy|countries|#{proxy.country_code}", conn)
     RedisUniqueQueue.push(country_queue, json)
   end
 
