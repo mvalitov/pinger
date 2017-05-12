@@ -32,7 +32,7 @@ defmodule Pinger.Mixfile do
     [{:gen_stage, "~> 0.11"},
     {:httpoison, "~> 0.11.1"},
     {:poison, "~> 3.0"},
-    {:redis_unique_queue, "~> 0.1.3"},
+    {:redis_unique_queue, "~> 0.1.4"},
     {:ecto, "~> 2.0"},
     {:postgrex, "~> 0.11"},
     {:ip2location, github: "nazipov/ip2location-elixir"},
