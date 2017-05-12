@@ -11,13 +11,13 @@ defmodule Pinger.Pinger do
     options = Pinger.Settings.by_name("pinger")
     importers =
       for i <- 1..count do
-        {:"Elixir.Pinger.Importer#{i}", max_demand: 1, min_demand: 0}
+        {:"Elixir.Pinger.Importer#{i}", max_demand: 10, min_demand: 0}
       end
     {:producer_consumer, options, subscribe_to: importers}
   end
 
   def handle_events(events, from, options) do
-    Logger.debug "#{inspect(self())} PINGER handle_events #{inspect(events)} from #{inspect(from)}"
+    # Logger.debug "#{inspect(self())} PINGER handle_events #{inspect(events)} from #{inspect(from)}"
     proxies =
       Enum.map(events, fn(event) -> ping(event, options.value["request"]) end)
       |> Enum.reject(fn(x) -> x == nil end)

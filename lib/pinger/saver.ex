@@ -11,13 +11,13 @@ defmodule Pinger.Saver do
     {:ok, conn} = Redix.start_link(host: Application.get_env(:pinger, :redis_host), port: Application.get_env(:pinger, :redis_port))
     pingers =
       for id <- 1..count do
-        {:"Elixir.Pinger.Pinger#{id}", max_demand: 1, min_demand: 0}
+        {:"Elixir.Pinger.Pinger#{id}", max_demand: 10, min_demand: 0}
       end
     {:consumer, conn, subscribe_to: pingers}
   end
 
   def handle_events(events, from, conn) do
-    Logger.debug "#{inspect(self())} SAVER handle_events #{inspect(events)} from #{inspect(from)}, conn #{inspect(conn)}"
+    # Logger.debug "#{inspect(self())} SAVER handle_events #{inspect(events)} from #{inspect(from)}, conn #{inspect(conn)}"
     for event <- events do
       save_proxy(event, conn)
       Logger.info "#{inspect(event)} is OK"

@@ -14,7 +14,7 @@ defmodule Pinger.Loader do
   end
 
   def handle_demand(demand, []) do
-    Logger.debug("#{inspect(self())} LOADER empty handle_demand #{demand}")
+    # Logger.debug("#{inspect(self())} LOADER empty handle_demand #{demand}")
     [head|tail] = Group.enabled
     {:noreply, [head], tail}
   end
@@ -22,7 +22,7 @@ defmodule Pinger.Loader do
   def handle_demand(demand, groups) do
     head = Enum.slice(groups, 0, demand)
     tail = Enum.slice(groups, demand, Enum.count(groups))
-    Logger.debug("#{inspect(self())} LOADER handle_demand #{demand}, #{inspect(head)}, left #{Enum.count(tail)}")
+    # Logger.debug("#{inspect(self())} LOADER handle_demand #{demand}, #{inspect(head)}, left #{Enum.count(tail)}")
     {:noreply, head, tail}
   end
 
