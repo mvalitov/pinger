@@ -16,8 +16,7 @@ defmodule Pinger.Pinger do
     {:producer_consumer, options, subscribe_to: importers}
   end
 
-  def handle_events(events, from, options) do
-    # Logger.debug "#{inspect(self())} PINGER handle_events #{inspect(events)} from #{inspect(from)}"
+  def handle_events(events, _from, options) do
     proxies =
       Enum.map(events, fn(event) -> ping(event, options.value["request"]) end)
       |> Enum.reject(fn(x) -> x == nil end)
