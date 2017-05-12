@@ -26,4 +26,3 @@ defmodule Pinger.Request do
   end
 
 end
-curl -x socks5://88.212.246.220:20658 https://ip.nf/me.json
