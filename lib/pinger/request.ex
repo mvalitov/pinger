@@ -22,7 +22,7 @@ defmodule Pinger.Request do
 
 # timeout in milliseconds
   defp default_params(timeout \\ 5000) do
-    [ssl: [verify: :verify_none], timeout: timeout, recv_timeout: timeout, connect_timeout: timeout, hackney: [pool: false]]
+    [ssl: [verify: :verify_none], timeout: timeout, recv_timeout: timeout, connect_timeout: timeout, hackney: [pool: false, insecure: true]]
   end
 
 end
