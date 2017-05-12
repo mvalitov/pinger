@@ -16,7 +16,7 @@ defmodule Pinger.Request do
           reason
       end
     rescue
-      error -> {:error, %HTTPoison.Error{}}
+      error -> %HTTPoison.Error{}
     end
   end
 
