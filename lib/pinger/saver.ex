@@ -11,7 +11,7 @@ defmodule Pinger.Saver do
     {:ok, conn} = Redix.start_link(host: Application.get_env(:pinger, :redis_host), port: Application.get_env(:pinger, :redis_port))
     pingers =
       for id <- 1..count do
-        {:"Elixir.Pinger.Pinger#{id}", max_demand: 10, min_demand: 0}
+        {:"Elixir.Pinger.Pinger#{id}", max_demand: 5, min_demand: 0}
       end
     {:consumer, conn, subscribe_to: pingers}
   end

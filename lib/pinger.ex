@@ -12,7 +12,5 @@ defmodule Pinger do
       :world
 
   """
-  def hello do
-    :world
-  end
+
 end

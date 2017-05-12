@@ -11,7 +11,7 @@ defmodule Pinger.Pinger do
     options = Pinger.Settings.by_name("pinger")
     importers =
       for i <- 1..count do
-        {:"Elixir.Pinger.Importer#{i}", max_demand: 10, min_demand: 0}
+        {:"Elixir.Pinger.Importer#{i}", max_demand: 5, min_demand: 0}
       end
     {:producer_consumer, options, subscribe_to: importers}
   end
