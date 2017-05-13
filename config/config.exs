@@ -17,7 +17,9 @@ config :pinger,
   redis_port: 6379,
   max_importers: 1,
   max_pingers: 1,
-  max_savers: 1
+  max_savers: 1,
+  max_demand: 5,
+  min_demand: 0
 
 
 database_file =

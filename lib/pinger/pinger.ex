@@ -11,7 +11,7 @@ defmodule Pinger.Pinger do
     options = Pinger.Settings.by_name("pinger")
     importers =
       for i <- 1..count do
-        {:"Elixir.Pinger.Importer#{i}", max_demand: 5, min_demand: 0}
+        {:"Elixir.Pinger.Importer#{i}", max_demand: Application.get_env(:pinger, :max_demand), min_demand: Application.get_env(:pinger, :min_demand)}
       end
     {:producer_consumer, options, subscribe_to: importers}
   end
@@ -24,7 +24,7 @@ defmodule Pinger.Pinger do
   end
 
   defp ping(proxy, options) do
-    ip = Pinger.Request.ping(%{url: "https://ip.nf/me.json", proxy: proxy.url, options: options})
+    ip = Pinger.Request.ping([proxy: proxy.url, options: options])
     case ip do
       %HTTPoison.Error{} ->
         Logger.info "#{inspect(proxy)} is BAD"
