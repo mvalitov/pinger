@@ -29,7 +29,7 @@ defmodule Pinger.Pinger do
       %HTTPoison.Error{} ->
         Logger.info "#{inspect(proxy)} is BAD"
         nil
-      %{} -> %{proxy | ip: ip["ip"]["ip"], country_code: ip["ip"]["country_code"], region_code: lookup(ip["ip"]["ip"]).region}
+      %{} -> %{proxy | ip: ip["ip"]["ip"], country_code: ip["ip"]["country_code"]}
     end
   end
 
