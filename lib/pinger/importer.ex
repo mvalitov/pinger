@@ -21,9 +21,9 @@ defmodule Pinger.Importer do
   end
 
   defp generate_proxies list, id do
-    Enum.reduce(list, [], fn(x, acc) ->
-      List.insert_at(acc, -1, %Pinger.Proxy{group_id: id, url: x})
-    end)
+    for l <- list do
+      %Pinger.Proxy{group_id: id, url: l}
+    end
   end
 
 end
